@@ -8,13 +8,17 @@
 
 import SwiftUI
 
-/// This view has a front and a back view and can be flipped
-/// to show the other side when it's tapped or swiped.
+/// This view has a front and a back view that can be flipped between.
 ///
-/// > Important: This view currently handles flip animations
-/// incorrectly when used within a `List`. You can apply the
-/// ``SwiftUICore/View/withFlipViewListBugFix()`` to fix the
-/// bug until we find a way to do it natively.
+/// Use `tapDirection` to define in which direction the view should be flipped
+/// when it's tapped, and `swipeDirections` to define which swipe directions
+/// that should be applied to the view.
+///
+/// You can observe the `isFlipped` binding to catch when the view is flipped.
+///
+/// > Important: This view handles flip animations incorrectly when it's used within
+/// a `List`. Apply a ``SwiftUICore/View/withFlipViewListBugFix()``
+/// to the view, to fix the bug until we find a reason for it and a native fix.
 public struct FlipView<Front: View, Back: View>: View {
 
     /// Create a flip view with content view builders.
@@ -51,7 +55,7 @@ public struct FlipView<Front: View, Back: View>: View {
 
     @Binding private var isFlipped: Bool
 
-    @Environment(\.flipViewAnimation) var flipAnimation
+    @Environment(\.flipAnimation) var flipAnimation
 
     @State private var cardRotation = 0.0
     @State private var contentRotation = 0.0
@@ -91,11 +95,9 @@ public struct FlipView<Front: View, Back: View>: View {
 
 public extension View {
 
-    /// Apply this to a ``FlipView`` to make it perform well
-    /// within a List.
+    /// Apply this to a ``FlipView`` to make it perform well within a `List`.
     ///
-    /// This shouldn't be needed, so if we find a way to fix
-    /// it, we should.
+    /// This shouldn't be needed, so if we find a way to fix it, we should.
     func withFlipViewListBugFix() -> some View {
         ZStack {
             self
@@ -187,7 +189,7 @@ private struct PreviewContent: View {
     let isFlipped: Bool
 
     var body: some View {
-        let text = Text("Is Flipped: \(isFlipped)")
+        let text = Text("Is Flipped: \(isFlipped.description)")
         let color = isFlipped ? Color.red : Color.green
         let colorView = color.clipShape(.rect(cornerRadius: 10))
         return colorView.overlay(text)
@@ -204,7 +206,7 @@ func previewContent(isFlipped: Binding<Bool>) -> some View {
         front: { PreviewContent(isFlipped: isFlipped.wrappedValue) },
         back: { PreviewContent(isFlipped: isFlipped.wrappedValue) }
     )
-    .flipViewAnimation(.bouncy, duration: 0.5)
+    .flipAnimation(.bouncy, duration: 0.5)
     .withFlipViewListBugFix()  // OBS!
     .frame(minHeight: 100)
 

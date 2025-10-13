@@ -39,7 +39,7 @@ You can [become a sponsor][Sponsors] to help me dedicate more time on my various
 
 ## Getting Started
 
-With FlipKit's `FlipView`, you just have to provide a front and back view: 
+The `FlipView` can flip between a front and back view: 
 
 ```swift
 import FlipKit
@@ -51,13 +51,10 @@ struct MyView: View {
     var body: some View {
         FlipView(
             isFlipped: $isFlipped,
-            flipDuration: 1.0,
-            tapDirection: .right,
-            flipDirections: [.left, .right, .up, .down],
             front: { Card(color: .green) },
             back: { Card(color: .red) }
         )
-        .flipViewAnimation(.linear, duration: 1.0)
+        .flipAnimation(.linear, duration: 1.0)
         .withListRenderingBugFix()  // Use this when in a List 
     }
 }
@@ -72,7 +69,7 @@ struct Card: View {
 }
 ```
 
-You can flip the view programatically by just toggling `isFlipped` with code.
+You can provide custom tap flip and swipe directions, and can also flip the view by toggling the `isFlipped` binding. You can also use the `.onFlipGesture(up:left:right:down:)` view modifier to apply custom flip actions.
 
 
 

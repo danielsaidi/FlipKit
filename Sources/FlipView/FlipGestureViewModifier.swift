@@ -9,11 +9,9 @@
 #if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
 import SwiftUI
 
-/// This view modifier can be used to apply flip actions for
-/// any flip direction.
+/// This view modifier can be used to apply flip actions to any view.
 ///
-/// You can apply this view modifier with the ``SwiftUICore/View/onFlipGesture(maximumTime:minimumDistance:maximumDistance:gestureTimer:up:left:right:down:)``
-/// view modifier.
+/// You can apply this modifier with the `.onFlipGesture(...)` view modifier.
 public struct FlipGestureViewModifier: ViewModifier {
 
     /// Create a flip gesture view modifier.
@@ -28,19 +26,19 @@ public struct FlipGestureViewModifier: ViewModifier {
     ///   - right: The action to trigger when the user flips right, if any.
     ///   - down: The action to trigger when the user flips down, if any.
     public init(
-        maximumTime: TimeInterval = 1,
-        minimumDistance: CGFloat = 10,
-        maximumDistance: CGFloat = 100_000,
-        gestureTimer: GestureTimer = GestureTimer(),
+        maximumTime: TimeInterval? = nil,
+        minimumDistance: CGFloat? = nil,
+        maximumDistance: CGFloat? = nil,
+        gestureTimer: GestureTimer? = nil,
         up: Action? = nil,
         left: Action? = nil,
         right: Action? = nil,
         down: Action? = nil
     ) {
-        self.maximumTime = maximumTime
-        self.minimumDistance = minimumDistance
-        self.maximumDistance = maximumDistance
-        self.gestureTimer = gestureTimer
+        self.maximumTime = maximumTime ?? 1
+        self.minimumDistance = minimumDistance ?? 10
+        self.maximumDistance = maximumDistance ?? 100_000
+        self.gestureTimer = gestureTimer ?? GestureTimer()
         self.up = up
         self.left = left
         self.right = right
@@ -114,23 +112,49 @@ public struct FlipGestureViewModifier: ViewModifier {
 }
 
 public extension View {
-    
-    /// Add swipe gestures that are triggered when this view
-    /// is swiped in any of the specified directions.
+
+    /// Add a flip animation to the view, with actions that are triggered when the
+    /// view is flipped in any direction.
+    ///
+    /// - Parameters:
+    ///   - up: The action to trigger when the user swipes up, if any.
+    ///   - left: The action to trigger when the user swipes left, if any.
+    ///   - right: The action to trigger when the user swipes right, if any.
+    ///   - down: The action to trigger when the user swipes down, if any.
+    @_disfavoredOverload
+    func onFlipGesture(
+        up: FlipGestureViewModifier.Action? = nil,
+        left: FlipGestureViewModifier.Action? = nil,
+        right: FlipGestureViewModifier.Action? = nil,
+        down: FlipGestureViewModifier.Action? = nil
+    ) -> some View {
+        self.modifier(
+            FlipGestureViewModifier(
+                up: up,
+                left: left,
+                right: right,
+                down: down
+            )
+        )
+    }
+
+    /// Add a flip animation to the view, with actions that are triggered when the
+    /// view is flipped in any direction.
     ///
     /// - Parameters:
     ///   - maximumTime: The max time the gesture can be active before cancelling itself, by default `1`.
     ///   - minimumDistance: The minimum distance in points the gesture must be dragged before it triggers, by default `10`.
     ///   - maximumDistance: The maximum distance in points the gesture can be dragged before it cancels, by default `100_000`.
+    ///   - gestureTimer: The gesture time to use, by default a standard instance.
     ///   - up: The action to trigger when the user swipes up, if any.
     ///   - left: The action to trigger when the user swipes left, if any.
     ///   - right: The action to trigger when the user swipes right, if any.
     ///   - down: The action to trigger when the user swipes down, if any.
     func onFlipGesture(
-        maximumTime: TimeInterval = 1,
-        minimumDistance: CGFloat = 10,
-        maximumDistance: CGFloat = 100_000,
-        gestureTimer: FlipGestureViewModifier.GestureTimer = .init(),
+        maximumTime: TimeInterval? = nil,
+        minimumDistance: CGFloat? = nil,
+        maximumDistance: CGFloat? = nil,
+        gestureTimer: FlipGestureViewModifier.GestureTimer? = nil,
         up: FlipGestureViewModifier.Action? = nil,
         left: FlipGestureViewModifier.Action? = nil,
         right: FlipGestureViewModifier.Action? = nil,

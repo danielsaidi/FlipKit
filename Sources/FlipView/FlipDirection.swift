@@ -8,8 +8,7 @@
 
 import Foundation
 
-/// This enum defines the supported flip directions that can
-/// be used with a ``FlipView``.
+/// This enum defines the supported ``FlipView`` flip directions.
 public enum FlipDirection: CaseIterable {
 
     case left, right, up, down

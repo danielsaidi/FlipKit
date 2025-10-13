@@ -7,7 +7,7 @@ FlipKit is a SwiftUI library with flip utilities that work on all major Apple pl
 
 ![Library logotype](Logo.png)
 
-FlipKit is a SwiftUI library with flip utilities that work on all major Apple platforms, like the multi-platform ``FlipView``.
+FlipKit is a SwiftUI library with flip utilities that work on all major Apple platforms, like the multi-platform ``FlipView`` and the ``SwiftUICore/View/onFlipGesture(up:left:right:down:)`` view modifier.
 
 
 
@@ -20,6 +20,7 @@ https://github.com/danielsaidi/FlipView.git
 ```
 
 
+
 ## Support My Work
 
 You can [become a sponsor][Sponsors] to help me dedicate more time on my various [open-source tools][OpenSource]. Every contribution, no matter the size, makes a real difference in keeping these tools free and actively developed.
@@ -28,7 +29,7 @@ You can [become a sponsor][Sponsors] to help me dedicate more time on my various
 
 ## Getting started
 
-With FlipKit's `FlipView`, you just have to provide a front and back view: 
+The ``FlipView`` can flip between a front and back view: 
 
 ```swift
 import FlipKit
@@ -40,12 +41,10 @@ struct MyView: View {
     var body: some View {
         FlipView(
             isFlipped: $isFlipped,
-            tapDirection: .right,
-            flipDirections: [.left, .right, .up, .down],
             front: { Card(color: .green) },
             back: { Card(color: .red) }
         )
-        .flipViewAnimation(.linear, duration: 1.0)
+        .flipAnimation(.linear, duration: 1.0)
         .withListRenderingBugFix()  // For now, when used in a List 
     }
 }
@@ -60,7 +59,7 @@ struct Card: View {
 }
 ```
 
-You can flip the view programatically by just toggling `isFlipped` with code.
+You can provide custom tap flip and swipe directions, and can also flip the view by toggling the `isFlipped` binding. You can also add the ``SwiftUICore/View/onFlipGesture(up:left:right:down:)`` modifier to any view to apply custom flip actions.
 
 
 
@@ -81,7 +80,10 @@ FlipKit is available under the MIT license.
 ### Essentials
 
 - ``FlipView``
-- ``FlipViewAnimation``
+
+### Models
+
+- ``FlipAnimation``
 - ``FlipDirection``
 - ``FlipGestureViewModifier``
 

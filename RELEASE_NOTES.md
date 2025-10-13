@@ -6,9 +6,24 @@ Until then, breaking changes can happen in any minor version.
 
 
 
+## 0.4
+
+This update update the Swift version.
+
+### 💡 Adjustments
+
+* The package now uses Swift 6.1. 
+* The demo app now targets iOS 26.
+
+### 🗑️ Deprecations
+
+* `FlipViewAnimation` has been renamed to `FlipAnimation`. 
+
+
+
 ## 0.3
 
-This update reverts the two front and back view builder parameters.
+This update reverts the front & back view builder parameters.
 
 
 

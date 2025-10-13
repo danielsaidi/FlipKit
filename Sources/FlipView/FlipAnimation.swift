@@ -1,5 +1,5 @@
 //
-//  FlipViewAnimation.swift
+//  FlipAnimation.swift
 //  FlipKit
 //
 //  Created by Daniel Saidi on 2025-07-14.
@@ -8,13 +8,11 @@
 
 import SwiftUI
 
-/// This enum defines supported flip view animation types.
+/// This enum defines supported flip animation types.
 ///
-/// The enum can use native animations that support duration.
-///
-/// You can apply a custom flip view animation with the view
-/// modifier ``SwiftUICore/View/flipViewAnimation(_:duration:)``.
-public enum FlipViewAnimation: String, Codable, Hashable, Sendable {
+/// You can apply a custom flip animation by applying the view modifier
+/// ``SwiftUICore/View/flipAnimation(_:duration:)`` to the view.
+public enum FlipAnimation: String, Codable, Hashable, Sendable {
 
     /// A bouncy animation.
     case bouncy
@@ -36,9 +34,9 @@ public enum FlipViewAnimation: String, Codable, Hashable, Sendable {
 }
 
 /// This internal type defines an animation and a duration.
-struct FlipViewAnimationValue {
+struct FlipAnimationValue {
 
-    let animationType: FlipViewAnimation
+    let animationType: FlipAnimation
     let duration: TimeInterval
 
     var animation: Animation {
@@ -55,20 +53,20 @@ struct FlipViewAnimationValue {
 
 extension EnvironmentValues {
 
-    @Entry var flipViewAnimation = FlipViewAnimationValue(animationType: .linear, duration: 0.2)
+    @Entry var flipAnimation = FlipAnimationValue(animationType: .linear, duration: 0.2)
 }
 
 public extension View {
 
-    /// Apply a custom ``FlipViewAnimation`` type.
+    /// Apply a custom ``FlipAnimation`` type.
     ///
     /// - Parameters:
     ///   - animation: The animation to use.
     ///   - duration: The animation duration, by default `0.2`.
-    func flipViewAnimation(
-        _ animation: FlipViewAnimation,
+    func flipAnimation(
+        _ animation: FlipAnimation,
         duration: TimeInterval = 0.2
     ) -> some View {
-        self.environment(\.flipViewAnimation, .init(animationType: animation, duration: duration))
+        self.environment(\.flipAnimation, .init(animationType: animation, duration: duration))
     }
 }
