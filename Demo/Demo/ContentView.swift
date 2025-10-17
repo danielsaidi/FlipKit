@@ -15,7 +15,6 @@ struct ContentView: View {
     var body: some View {
         FlipView(
             isFlipped: $isFlipped,
-            flipDuration: 0.3,
             front: { Card(.green) },
             back: { Card(.red) }
         )
