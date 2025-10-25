@@ -6,9 +6,19 @@ Until then, breaking changes can happen in any minor version.
 
 
 
+## 0.4.1
+
+This update fixes an initial view rendering bug.
+
+### 🐛 Bug Fixes
+
+* `FlipView` no longer shows the wrong view initially. 
+
+
+
 ## 0.4
 
-This update update the Swift version.
+This update bumps the package to use Swift 6.1.
 
 ### 💡 Adjustments
 

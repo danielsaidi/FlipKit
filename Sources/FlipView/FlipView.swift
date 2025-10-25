@@ -86,9 +86,9 @@ public struct FlipView<Front: View, Back: View>: View {
     @ViewBuilder
     private var bodyContent: some View {
         if isFlipped {
-            front()
-        } else {
             back()
+        } else {
+            front()
         }
     }
 }
