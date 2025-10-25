@@ -1,6 +1,6 @@
 # Release Notes
 
-FlipKit will use semver after 1.0. 
+[FlipKit](https://github.com/danielsaidi/FlipKit) will use semver after 1.0.
 
 Until then, breaking changes can happen in any minor version.
 
