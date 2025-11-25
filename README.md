@@ -7,7 +7,6 @@
     <img src="https://img.shields.io/badge/swift-6.1-orange.svg" alt="Swift 6.1" />
     <a href="https://danielsaidi.github.io/FlipKit"><img src="https://img.shields.io/badge/documentation-web-blue.svg" alt="Documentation" /></a>
     <a href="https://github.com/danielsaidi/FlipKit/blob/master/LICENSE"><img src="https://img.shields.io/github/license/danielsaidi/FlipKit" alt="MIT License" /></a>
-    <a href="https://github.com/sponsors/danielsaidi"><img src="https://img.shields.io/badge/sponsor-GitHub-red.svg" alt="Sponsor my work" /></a>
 </p>
 
 
@@ -29,12 +28,6 @@ FlipKit can be installed with the Swift Package Manager:
 ```
 https://github.com/danielsaidi/FlipKit.git
 ```
-
-
-## Support My Work
-
-You can [become a sponsor][Sponsors] to help me dedicate more time on my various [open-source tools][OpenSource]. Every contribution, no matter the size, makes a real difference in keeping these tools free and actively developed.
-
 
 
 ## Getting Started
@@ -72,17 +65,19 @@ struct Card: View {
 You can provide custom tap flip and swipe directions, and can also flip the view by toggling the `isFlipped` binding. You can also use the `.onFlipGesture(up:left:right:down:)` view modifier to apply custom flip actions.
 
 
-
 ## Documentation
 
 The online [documentation][Documentation] has more information, articles, code examples, etc.
-
 
 
 ## Demo Application
 
 The `Demo` folder has a demo app that lets you explore the library and integrate with a few APIs.
 
+
+## Support My Work
+
+You can [become a sponsor][Sponsors] to help me dedicate more time on my various [open-source tools][OpenSource]. Every contribution, no matter the size, makes a real difference in keeping these tools free and actively developed.
 
 
 ## Contact
@@ -95,11 +90,9 @@ Feel free to reach out if you have questions, or want to contribute in any way:
 * Mastodon: [@danielsaidi@mastodon.social][Mastodon]
 
 
-
 ## License
 
 FlipKit is available under the MIT license. See the [LICENSE][License] file for more info.
-
 
 
 [Email]: mailto:daniel.saidi@gmail.com
