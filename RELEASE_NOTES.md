@@ -6,6 +6,16 @@ Until then, breaking changes can happen in any minor version.
 
 
 
+## 0.5
+
+This update removes deprecated code.
+
+### 🗑️ Deprecations
+
+* All deprecated code has been removed. 
+
+
+
 ## 0.4.1
 
 This update fixes an initial view rendering bug.

@@ -8,11 +8,10 @@ import Testing
     #if os(iOS)
     _ = FlipGestureViewModifier()
     #endif
-    _ = FlipViewAnimation.linear
     _ = FlipView(
         isFlipped: .constant(true),
         front: { Color.green },
         back: { Color.red }
     )
-    .flipViewAnimation(.bouncy, duration: 1)
+    .flipAnimation(.bouncy, duration: 1)
 }
