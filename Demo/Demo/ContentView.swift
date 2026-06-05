@@ -19,6 +19,7 @@ struct ContentView: View {
             back: { Card(.red) }
         )
         .padding()
+        .flipAnimation(.bouncy, duration: 1.5)
     }
 }
 
