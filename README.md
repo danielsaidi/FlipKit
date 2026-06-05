@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/v/release/danielsaidi/FlipKit?color=%2300550&sort=semver" alt="Version" />
     <img src="https://img.shields.io/badge/swift-6.1-orange.svg" alt="Swift 6.1" />
     <a href="https://danielsaidi.github.io/FlipKit"><img src="https://img.shields.io/badge/documentation-web-blue.svg" alt="Documentation" /></a>
-    <a href="https://github.com/danielsaidi/FlipKit/blob/master/LICENSE"><img src="https://img.shields.io/github/license/danielsaidi/FlipKit" alt="MIT License" /></a>
+    <a href="https://github.com/danielsaidi/FlipKit/blob/main/LICENSE"><img src="https://img.shields.io/github/license/danielsaidi/FlipKit" alt="MIT License" /></a>
 </p>
 
 
@@ -48,7 +48,6 @@ struct MyView: View {
             back: { Card(color: .red) }
         )
         .flipAnimation(.linear, duration: 1.0)
-        .withListRenderingBugFix()  // Use this when in a List 
     }
 }
 

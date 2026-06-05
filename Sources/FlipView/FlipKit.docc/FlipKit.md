@@ -21,12 +21,6 @@ https://github.com/danielsaidi/FlipView.git
 
 
 
-## Support My Work
-
-You can [become a sponsor][Sponsors] to help me dedicate more time on my various [open-source tools][OpenSource]. Every contribution, no matter the size, makes a real difference in keeping these tools free and actively developed.
-
-
-
 ## Getting started
 
 The ``FlipView`` can flip between a front and back view: 
@@ -45,7 +39,6 @@ struct MyView: View {
             back: { Card(color: .red) }
         )
         .flipAnimation(.linear, duration: 1.0)
-        .withListRenderingBugFix()  // For now, when used in a List 
     }
 }
 
