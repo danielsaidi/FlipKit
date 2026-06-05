@@ -118,7 +118,7 @@ private struct FlipViewInternal<Front: View, Back: View>: View {
 
     @ViewBuilder
     private var bodyContent: some View {
-        if isFlipped {
+        if isContentFlipped {
             back()
         } else {
             front()
