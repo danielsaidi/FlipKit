@@ -17,11 +17,6 @@ import SwiftUI
 ///
 /// You can observe the `isFlipped` binding to know when the
 /// view is flipped.
-///
-/// > Important: The flip animates strangely when it is used
-/// within a `List`. You can fix this animation bug with the
-/// ``SwiftUICore/View/withFlipViewListBugFix()``. This will
-/// make the view render correctly.
 public struct FlipView<Front: View, Back: View>: View {
 
     /// Create a flip view with content view builders.
@@ -39,16 +34,51 @@ public struct FlipView<Front: View, Back: View>: View {
         @ViewBuilder front: @escaping () -> Front,
         @ViewBuilder back: @escaping () -> Back,
     ) {
+        self.isFlipped = isFlipped
+        self.tapDirection = tapDirection
+        self.swipeDirections = swipeDirections
+        self.front = front
+        self.back = back
+    }
+
+    public enum Face: Codable, Equatable, Hashable, Sendable {
+        case front, back
+    }
+
+    private let isFlipped: Binding<Bool>
+    private let tapDirection: FlipDirection
+    private let swipeDirections: [FlipDirection]
+    private let front: () -> Front
+    private let back: () -> Back
+
+    public var body: some View {
+        ZStack {
+            FlipViewInternal(
+                isFlipped: isFlipped,
+                tapDirection: tapDirection,
+                swipeDirections: swipeDirections,
+                front: front,
+                back: back
+            )
+        }
+    }
+}
+
+private struct FlipViewInternal<Front: View, Back: View>: View {
+
+    init(
+        isFlipped: Binding<Bool>,
+        tapDirection: FlipDirection = .right,
+        swipeDirections: [FlipDirection] = .allCases,
+        @ViewBuilder front: @escaping () -> Front,
+        @ViewBuilder back: @escaping () -> Back,
+    ) {
         self.front = front
         self.back = back
         self._isFlipped = isFlipped
         self.tapDirection = tapDirection
         self.swipeDirections = swipeDirections
         self._isContentFlipped = .init(initialValue: isFlipped.wrappedValue)
-    }
-
-    public enum Face: Codable, Equatable, Hashable, Sendable {
-        case front, back
     }
 
     private let front: () -> Front
@@ -76,7 +106,7 @@ public struct FlipView<Front: View, Back: View>: View {
         flipAnimation.animation
     }
 
-    public var body: some View {
+    var body: some View {
         bodyContent
             .onChange(of: isFlipped) { _, _ in flipWithTap() }
             .withTapGesture(action: flipWithTap)
@@ -92,20 +122,6 @@ public struct FlipView<Front: View, Back: View>: View {
             back()
         } else {
             front()
-        }
-    }
-}
-
-public extension View {
-
-    /// Apply this to a ``FlipView`` to make it perform well
-    /// within a `List`.
-    ///
-    /// This shouldn't be needed, so if we find a way to fix
-    /// it, we should remove this view modifier.
-    func withFlipViewListBugFix() -> some View {
-        ZStack {
-            self
         }
     }
 }
@@ -136,7 +152,7 @@ private extension View {
     }
 }
 
-private extension FlipView {
+private extension FlipViewInternal {
 
     func flip(_ direction: FlipDirection) {
         guard !isFlipping else { return }
@@ -212,7 +228,6 @@ func previewContent(isFlipped: Binding<Bool>) -> some View {
         back: { PreviewContent(isFlipped: isFlipped.wrappedValue) }
     )
     .flipAnimation(.bouncy, duration: 0.5)
-    .withFlipViewListBugFix()  // OBS!
     .frame(minHeight: 100)
 
     Button("Flip") {

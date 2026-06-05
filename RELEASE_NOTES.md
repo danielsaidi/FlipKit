@@ -10,9 +10,14 @@ Until then, breaking changes can happen in any minor version.
 
 This update removes deprecated code.
 
+### 🐛 Bug Fixes
+
+* `FlipView` no longer behaves incorrectly in lists. 
+
 ### 🗑️ Deprecations
 
-* All deprecated code has been removed. 
+* All deprecated code has been removed.
+* The `.withFlipViewListBugFix()` view modifier is no longer needed. 
 
 
 
