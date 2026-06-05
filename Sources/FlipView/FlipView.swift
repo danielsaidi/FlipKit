@@ -8,17 +8,20 @@
 
 import SwiftUI
 
-/// This view has a front and a back view that can be flipped between.
+/// This view has a front and a back view and can be flipped
+/// between both by tapping or swiping the view.
 ///
-/// Use `tapDirection` to define in which direction the view should be flipped
-/// when it's tapped, and `swipeDirections` to define which swipe directions
-/// that should be applied to the view.
+/// Use `tapDirection` to define in which direction the view
+/// should be flipped when it's tapped, and `swipeDirections`
+/// to define the enabled swipe directions.
 ///
-/// You can observe the `isFlipped` binding to catch when the view is flipped.
+/// You can observe the `isFlipped` binding to know when the
+/// view is flipped.
 ///
-/// > Important: This view handles flip animations incorrectly when it's used within
-/// a `List`. Apply a ``SwiftUICore/View/withFlipViewListBugFix()``
-/// to the view, to fix the bug until we find a reason for it and a native fix.
+/// > Important: The flip animates strangely when it is used
+/// within a `List`. You can fix this animation bug with the
+/// ``SwiftUICore/View/withFlipViewListBugFix()``. This will
+/// make the view render correctly.
 public struct FlipView<Front: View, Back: View>: View {
 
     /// Create a flip view with content view builders.
@@ -95,9 +98,11 @@ public struct FlipView<Front: View, Back: View>: View {
 
 public extension View {
 
-    /// Apply this to a ``FlipView`` to make it perform well within a `List`.
+    /// Apply this to a ``FlipView`` to make it perform well
+    /// within a `List`.
     ///
-    /// This shouldn't be needed, so if we find a way to fix it, we should.
+    /// This shouldn't be needed, so if we find a way to fix
+    /// it, we should remove this view modifier.
     func withFlipViewListBugFix() -> some View {
         ZStack {
             self

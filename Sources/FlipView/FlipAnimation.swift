@@ -10,8 +10,9 @@ import SwiftUI
 
 /// This enum defines supported flip animation types.
 ///
-/// You can apply a custom flip animation by applying the view modifier
-/// ``SwiftUICore/View/flipAnimation(_:duration:)`` to the view.
+/// You can set a custom ``FlipAnimation`` value by applying
+/// the ``SwiftUICore/View/flipAnimation(_:duration:)`` view
+/// modifier to the view hierarchy.
 public enum FlipAnimation: String, Codable, Hashable, Sendable {
 
     /// A bouncy animation.

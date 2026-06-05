@@ -9,9 +9,10 @@
 #if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
 import SwiftUI
 
-/// This view modifier can be used to apply flip actions to any view.
+/// This view modifier can be used to apply flip gestures to
+/// any view.
 ///
-/// You can apply this modifier with the `.onFlipGesture(...)` view modifier.
+/// You can apply it with the `.onFlipGesture(...)` modifier.
 public struct FlipGestureViewModifier: ViewModifier {
 
     /// Create a flip gesture view modifier.
@@ -113,8 +114,7 @@ public struct FlipGestureViewModifier: ViewModifier {
 
 public extension View {
 
-    /// Add a flip animation to the view, with actions that are triggered when the
-    /// view is flipped in any direction.
+    /// Apply custom flip gesture actions to the view.
     ///
     /// - Parameters:
     ///   - up: The action to trigger when the user swipes up, if any.
@@ -138,8 +138,7 @@ public extension View {
         )
     }
 
-    /// Add a flip animation to the view, with actions that are triggered when the
-    /// view is flipped in any direction.
+    /// Apply custom flip gestures to the view.
     ///
     /// - Parameters:
     ///   - maximumTime: The max time the gesture can be active before cancelling itself, by default `1`.
